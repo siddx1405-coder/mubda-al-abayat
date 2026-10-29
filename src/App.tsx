@@ -251,6 +251,7 @@ export default function App() {
   const [justAdded, setJustAdded] = useState<number | null>(null)
   const t = copy[lang]
   const isArabic = lang === "ar"
+  const displayPhoneNumber = isArabic ? "٩٧٤ ٥٩٩٩ ٧٠٢٠" : "974 5999 7020"
   const cartCount = Object.values(cart).reduce((sum, qty) => sum + qty, 0)
   const total = useMemo(
     () =>
@@ -590,10 +591,13 @@ export default function App() {
                   {isArabic ? "تواصلي معنا" : "Get in touch"}
                 </h3>
                 <div className="mt-8 divide-y divide-black/15 border-y border-black/15">
-                  <a href={`tel:+97459997020`} className="contact-link">
+                  <a href={`tel:+${whatsappNumber}`} className="contact-link">
                     <Icon name="phone" />
                     <span>
-                      <small>{t.call}</small>+974 5999 7020
+                      <small>{t.call}</small>
+                      <b dir="ltr" className="block font-medium">
+                        {displayPhoneNumber}
+                      </b>
                     </span>
                     <Icon name="arrow" size={17} />
                   </a>
@@ -605,7 +609,10 @@ export default function App() {
                   >
                     <Icon name="whatsapp" />
                     <span>
-                      <small>{t.whatsapp}</small>+974 5999 7020
+                      <small>{t.whatsapp}</small>
+                      <b dir="ltr" className="block font-medium">
+                        {displayPhoneNumber}
+                      </b>
                     </span>
                     <Icon name="arrow" size={17} />
                   </a>
